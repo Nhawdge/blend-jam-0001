@@ -1,4 +1,4 @@
-import assets, { ASSETS } from "../assets.js";
+import assets, { ASSETS, SOUNDS } from "../assets.js";
 
 export default function Player() {
 
@@ -18,7 +18,18 @@ export default function Player() {
             startShoot() { this.value = true }
         },
         cleanup(),
+        state("Idle", ["Idle", "Throw", "Floor", "Jump", "Copter", "Land", "Slide",])
     ]);
+
+    player.onStateEnter("Throw", () => {
+        player.play('Throw', { speed: 1, loop: false });
+        play(SOUNDS.Swing1);
+    })
+
+    onMouseDown(() => {
+        player.enterState("Throw");
+    })
+
 
     player.onUpdate(() => {
         //camPos(new vec2(player.pos.x, 150));

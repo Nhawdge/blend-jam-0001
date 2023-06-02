@@ -1,5 +1,5 @@
 import k from '../kaboom';
-import assets, { ASSETS } from '../assets';
+import assets, { ASSETS, SOUNDS } from '../assets';
 import Helicopter from '../Entities/Helicopter.js';
 import Player from '../Entities/Player.js';
 import Camera from '../Entities/Camera.js';
@@ -36,21 +36,22 @@ export default function Game() {
         //" ": () => [sprite("tiles", { frame: 5, width: 32, height: 32 })],
     }
 
-      layer(["bg", "world", "ui"], "obj");
+    layer(["bg", "world", "ui"], "obj");
 
-      var bg = add([
+    var bg = add([
         sprite(ASSETS.BACKGROUND),
         layer("bg"),
         "bg",
         pos(0, 0),
-      ])
-      bg.onUpdate(() => {   
+    ])
+    bg.onUpdate(() => {
         pos(bg.pos.x - 1, bg.pos.y);
     })
     addLevel(world[0], leveloptions);
 
     Player();
     Camera();
+    play(SOUNDS.BgMusic, { loop: true, volume: 0.5, })
 
 };
 

@@ -9,7 +9,17 @@ const assets = {
             // loadSprite("target", "/assets/target.png"),
             // loadSprite("rainbowtaffy", "/assets/rainbow-taffy.png"),
             loadSprite(ASSETS.BACKGROUND, "/assets/Background/background.jpg"),
+            loadSprite(ASSETS.MENUBG, "/assets/Background/mainmenu.jpg"),
             // loadSprite("pistol","/assets/2 Guns/1_1.png"),
+            loadSound(SOUNDS.BgMusic, "/assets/music/GameSong1.wav"),
+            loadSound(SOUNDS.Jump1, "/assets/sfx/jump-01.wav"),
+            loadSound(SOUNDS.Land1, "/assets/sfx/land-01.wav"),
+            loadSound(SOUNDS.Slide1, "/assets/sfx/slide-01.wav"),
+            loadSound(SOUNDS.Slide2, "/assets/sfx/slide-02.wav"),
+            loadSound(SOUNDS.Splat1, "/assets/sfx/splat-01.wav"),
+            loadSound(SOUNDS.Splat2, "/assets/sfx/splat-02.wav"),
+            loadSound(SOUNDS.Swing1, "/assets/sfx/swing-01.wav"),
+            
 
         ];
 
@@ -18,4 +28,20 @@ const assets = {
 };
 
 export default assets;
-export const ASSETS = { HERO: "hero", TILES: "tiles", BACKGROUND: "background" };
+export const ASSETS = {
+    HERO: "hero",
+    TILES: "tiles",
+    BACKGROUND: "background",
+    MENUBG: "menubg"
+};
+
+export const SOUNDS = {
+    BgMusic: "bgmusic",
+    Jump1: "jump1",
+    Land1: "land1",
+    Slide1: "slide1",
+    Slide2: "slide2",
+    Splat1: "splat1",
+    Splat2: "splat2",
+    Swing1: "swing1",
+}

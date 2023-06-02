@@ -1,5 +1,5 @@
 import k from '../kaboom';
-import assets from '../assets';
+import assets, { ASSETS, SOUNDS } from '../assets';
 
 export default function Menu() {
     const {
@@ -18,10 +18,20 @@ export default function Menu() {
         origin("center"),
         "start",
         area(),
+        z(100),
     ]);
 
     onClick("start", () => {
         go("game")
+        bgmusic.stop();
     })
+
+    add([
+        fixed(),
+        sprite(ASSETS.MENUBG),
+        scale(0.15)
+    ])
+
+    var bgmusic = play(SOUNDS.BgMusic, { loop: true, })
 
 }
