@@ -36,6 +36,17 @@ export default function Player() {
     player.onEnterCopter(() => {
         player.enterState('Copter');
         player.weight = COPTER_PLAYER_WEIGHT;
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+     
+
     });
 
     player.onExitCopter((is_grounded: boolean) => {
@@ -71,7 +82,6 @@ export default function Player() {
     })
 
     player.onStateEnter("Walk", () => {
-        console.log("walking")
         if (player.curAnim() != "run") {
             player.play("run", { speed: 15, loop: true });
         }
@@ -146,7 +156,7 @@ export default function Player() {
         var angle = velocity.angle();
 
         PaintDrop(player);
-     
+
     })
 
     playerEntity = player;
