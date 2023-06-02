@@ -1,15 +1,20 @@
 import assets, { ASSETS, SOUNDS } from "../assets.js";
+import copter from '../Components/Copter' ;
 
 export var playerEntity;
 
+
+
 export default function Player() {
+    const DEFAULT_PLAYER_WEIGHT = 1;
+    const COPTER_PLAYER_WEIGHT = 0.5;
 
     let player = add([
         pos(100, 150),
         origin('center'),
         sprite(ASSETS.HERO),
         area(),
-        body({ jumpForce: 320, weight: 1 }),
+        body({ jumpForce: 320, weight: DEFAULT_PLAYER_WEIGHT }),
         solid(),
         {
             shotsPerSecond: 10,
@@ -20,8 +25,24 @@ export default function Player() {
             startShoot() { this.value = true }
         },
         cleanup(),
-        state("Idle", ["Idle", "Throw", "Jump", "Copter", "Land", "Slide",])
+        copter(),
+        state("Idle", ["Idle", "Throw", "Floor", "Jump", "CopterStart", "Copter", "CopterEnd", "Land", "Slide",])
     ]);
+
+    player.onEnterCopter(() => {
+        player.enterState('Copter');
+        console.log('Enter copter');
+    });
+
+    player.onExitCopter((is_grounded:boolean) => {
+        console.log('Exit Copter');
+        if (is_grounded) {
+            player.enterState('CopterEnd');
+        }
+        else {
+            player.enterState('Jump');
+        }
+    });
 
     player.onStateEnter("Idle", () => {
         player.play('idle', { speed: 1, loop: true });
@@ -92,7 +113,7 @@ export default function Player() {
         player.enterState("Idle");
     })
 
-
+    
 
     // onMouseDown(() => {
     //     if (player.canShoot() == false) return;
