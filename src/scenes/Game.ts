@@ -110,7 +110,10 @@ export default function Game() {
 
     let bgMusic:AudioPlay | null = null;
     onLoad(() => {
-        bgMusic = play(SOUNDS.BgMusic, { loop: true, volume: 0.5, });
+        const rnd = Math.random();
+        console.log(rnd);
+        const music_to_play =  rnd <= 0.5 ? SOUNDS.BgMusic2 : SOUNDS.BgMusic;
+        bgMusic = play(music_to_play, { loop: true, volume: 0.5, });
     })
     
     player.on('died', () => {

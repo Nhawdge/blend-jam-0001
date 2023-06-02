@@ -21,14 +21,6 @@ export default function Player() {
         body({ jumpForce: 640, weight: DEFAULT_PLAYER_WEIGHT }),
         solid(),
         {
-            shotsPerSecond: 10,
-            id: "canShoot",
-            value: true,
-            canShoot() { return this.value },
-            stopShoot() { this.value = false },
-            startShoot() { this.value = true }
-        },
-        {
             paintAmount: STARTINGPAINTAMOUNT,
             id: "paintAmount",
             subtractPaint(amt: number) {return this.value - amt},
@@ -38,18 +30,28 @@ export default function Player() {
         cleanup(),
         copter(),
         PaintBar(),
-        state("Idle", ["Idle", "Walk", "Throw", "Floor", "Jump", "CopterStart", "Copter", "CopterEnd", "Land", "Slide",])
+        state("Idle", ["Idle", "Walk", "Throw", "Floor", "Jump", "CopterStart", "Copter", "CopterEnd", "Land", "Slide",]),
+        { canThrow: true }
     ]);
 
     player.onEnterCopter(() => {
         player.enterState('Copter');
         player.weight = COPTER_PLAYER_WEIGHT;
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
+        PaintDrop(player, true);
     });
 
     player.onExitCopter((is_grounded: boolean) => {
         player.weight = DEFAULT_PLAYER_WEIGHT;
         if (is_grounded) {
-            player.enterState('CopterEnd');
+            player.enterState("Idle");
         }
         else {
             player.enterState('Jump');
@@ -61,10 +63,13 @@ export default function Player() {
     })
 
     player.onStateEnter("Throw", () => {
+
         player.play('throw', { speed: 10, loop: false });
         play(SOUNDS.Swing1);
         wait(0.5, () => {
             player.enterState("Idle");
+            player.canThrow = true;
+            PaintDrop(player);
         });
     })
 
@@ -79,7 +84,6 @@ export default function Player() {
     })
 
     player.onStateEnter("Walk", () => {
-        console.log("walking")
         if (player.curAnim() != "run") {
             player.play("run", { speed: 15, loop: true });
         }
@@ -97,10 +101,6 @@ export default function Player() {
         player.play('slide', { speed: 1, loop: false });
     })
 
-    onMouseDown(() => {
-        player.enterState("Throw");
-        player.updatePaintBar(PAINTUSAGE);
-    })
 
     player.onUpdate(() => {
         //camPos(new vec2(player.pos.x, 150));
@@ -122,41 +122,31 @@ export default function Player() {
 
     onKeyDown("d", function () {
         player.move(walkspeed * (player.isRunning ? 2 : 1), 0);
-        if (player.isGrounded()) {
+        if (player.state !== "Walk" && player.isGrounded())
             player.enterState("Walk")
-        }
         player.flipX(false);
     })
 
     onKeyDown("a", function () {
         player.move(-walkspeed * (player.isRunning ? 2 : 1), 0);
-        if (player.isGrounded()) {
+        if (player.state !== "Walk" && player.isGrounded())
             player.enterState("Walk")
-        }
         player.flipX(true);
     })
 
     onKeyRelease(["w", "s", "a", "d"], function () {
-        player.enterState("Idle");
+        if (player.isGrounded())
+            player.enterState("Idle");
     })
-
 
 
     onMouseDown(() => {
-        if (player.canShoot() == false) return;
-        player.stopShoot();
-        wait(1 / player.shotsPerSecond, () => {
-            player.startShoot();
-        });
-        var mousePos = mouseWorldPos();
-        //var mousePos = toWorld(mousePos())
-
-        var velocity = mousePos.sub(player.pos).unit().scale(40);
-        var angle = velocity.angle();
-
-        PaintDrop(player);
-     
+        if (player.canThrow) {
+            player.canThrow = false
+            player.enterState("Throw");
+        }
     })
+
 
     playerEntity = player;
     return player;
