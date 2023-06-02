@@ -11,10 +11,14 @@ const assets = {
             loadSprite(ASSETS.MENUBG, "/assets/Background/start-screen-bg.png"),
             loadSprite(ASSETS.BACKGROUND, "/assets/Background/bgtile-1.png"),
             loadSprite(ASSETS.BACKGROUND2, "/assets/Background/bgtile-2.png"),
+            loadSprite(ASSETS.GROUND, "/assets/Background/the-ground-tile.png"),
 
             loadSprite(ASSETS.HIDDEN_LEFT, `/assets/Background/${ASSETS.HIDDEN_LEFT}.png`),
             loadSprite(ASSETS.HIDDEN_MIDDLE, `/assets/Background/${ASSETS.HIDDEN_MIDDLE}.png`),
             loadSprite(ASSETS.HIDDEN_RIGHT, `/assets/Background/${ASSETS.HIDDEN_RIGHT}.png`),
+            loadSprite(ASSETS.PAINTED_LEFT, `/assets/Background/painted-platform-left-end.png`),
+            loadSprite(ASSETS.PAINTED_MIDDLE, `/assets/Background/painted-platform-middle.png`),
+            loadSprite(ASSETS.PAINTED_RIGHT, `/assets/Background/painted-platform-right-end1.png`),
 
             loadSprite(ASSETS.PAINTDROP, `/assets/Background/the-paint-drop.png`),
 
@@ -44,12 +48,16 @@ export default assets;
 export const ASSETS = {
     HERO: "hero",
     TILES: "tiles",
+    GROUND: "ground",
     BACKGROUND: "background",
     BACKGROUND2: "background2",
     MENUBG: "menubg",
     HIDDEN_LEFT: 'hidden-platform-left-end',
     HIDDEN_MIDDLE: 'hidden-platform-middle',
     HIDDEN_RIGHT: 'hidden-platform-right-end',
+    PAINTED_LEFT: 'painted-platform-left-end',
+    PAINTED_MIDDLE: 'painted-platform-middle',
+    PAINTED_RIGHT: 'painted-platform-right-end',
     PAINTDROP: 'paint-drop'
 };
 

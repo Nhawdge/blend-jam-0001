@@ -7,6 +7,8 @@ const colors = [
     [255, 255, 0]
 ]
 
+const LIFESPAN = 2;
+
 export default function PaintDrop(player, random) {
 
     var paint = colors[randi(0, 3)];
@@ -32,6 +34,25 @@ export default function PaintDrop(player, random) {
         cleanup({ delay: 10 }),
         "paint",
     ])
+
+    onCollide('paint', 'unpainted', (a, b) => {
+        b.unuse('sprite');
+        b.use(sprite(ASSETS.PAINTED_MIDDLE));
+        b.use(solid());
+        destroy(drop);
+    });
+
+    onCollide('paint', 'block', (a, b) => {
+        destroy(drop);
+    });
+
+
+    let life = LIFESPAN;
+    onUpdate(() => {
+        life -=  dt();
+        if (life < 0)
+            destroy(drop);
+    });
 
     wait(0.1, () => {
         drop.use(body({ weight: 0.5, stickToPlatform: true }));
