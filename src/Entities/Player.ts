@@ -19,14 +19,7 @@ export default function Player() {
         area(),
         body({ jumpForce: 640, weight: DEFAULT_PLAYER_WEIGHT }),
         solid(),
-        {
-            shotsPerSecond: 10,
-            id: "canShoot",
-            value: true,
-            canShoot() { return this.value },
-            stopShoot() { this.value = false },
-            startShoot() { this.value = true }
-        },
+    
         cleanup(),
         copter(),
         PaintBar(),
