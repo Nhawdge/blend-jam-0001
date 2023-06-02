@@ -7,17 +7,19 @@ const colors = [
     [255, 255, 0]
 ]
 
-export default function PaintDrop(player) {
+export default function PaintDrop(player, random) {
 
     var paint = colors[randi(0, 3)];
 
     var mousePos = mouseWorldPos();
     //var mousePos = toWorld(mousePos())
-
     var velocity = mousePos.sub(player.pos).unit().scale(40);
+
+    if (random) {
+        velocity = vec2(randi(-5, 5), 0).unit()
+    }
+
     var angle = velocity.angle();
-
-
     var drop = add([
         area(),
         sprite(ASSETS.PAINTDROP),
@@ -29,10 +31,9 @@ export default function PaintDrop(player) {
         move(velocity, 500),
         cleanup({ delay: 10 }),
         "paint",
-
     ])
 
     wait(0.1, () => {
-        drop.use(body());
+        drop.use(body({ weight: 0.5, stickToPlatform: true }));
     })
 }
