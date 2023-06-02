@@ -103,7 +103,6 @@ export default function Game() {
 
     Player();
     Camera();
-    PaintBar();
     play(SOUNDS.BgMusic, { loop: true, volume: 0.5, })
 
 };

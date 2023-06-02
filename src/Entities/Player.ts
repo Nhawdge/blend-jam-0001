@@ -1,5 +1,6 @@
 import assets, { ASSETS, SOUNDS } from "../assets.js";
 import copter from '../Components/Copter';
+import PaintBar from "../Components/PaintBar.js";
 
 export var playerEntity;
 
@@ -8,6 +9,7 @@ export var playerEntity;
 export default function Player() {
     const DEFAULT_PLAYER_WEIGHT = 1;
     const COPTER_PLAYER_WEIGHT = 0.25;
+    const STARTINGPAINTAMOUNT = 100;
 
     let player = add([
         pos(100, 150),
@@ -26,6 +28,7 @@ export default function Player() {
         },
         cleanup(),
         copter(),
+        PaintBar(),
         state("Idle", ["Idle", "Walk", "Throw", "Floor", "Jump", "CopterStart", "Copter", "CopterEnd", "Land", "Slide",])
     ]);
 
