@@ -97,7 +97,7 @@ export default function Player() {
     })
 
     player.onDestroy(() => {
-        go("menu");
+        player.trigger('died');
     })
     player.play('idle', { speed: 1, loop: true });
 

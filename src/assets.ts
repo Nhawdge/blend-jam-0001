@@ -15,9 +15,10 @@ const assets = {
             loadSprite(ASSETS.HIDDEN_LEFT, `/assets/Background/${ASSETS.HIDDEN_LEFT}.png`),
             loadSprite(ASSETS.HIDDEN_MIDDLE, `/assets/Background/${ASSETS.HIDDEN_MIDDLE}.png`),
             loadSprite(ASSETS.HIDDEN_RIGHT, `/assets/Background/${ASSETS.HIDDEN_RIGHT}.png`),
-            
+
             // loadSprite("pistol","/assets/2 Guns/1_1.png"),
             loadSound(SOUNDS.BgMusic, "/assets/music/GameSong1.wav"),
+            loadSound(SOUNDS.MenuMusic, "/assets/music/GameSong2.wav"),
             loadSound(SOUNDS.Jump1, "/assets/sfx/jump-01.wav"),
             loadSound(SOUNDS.Land1, "/assets/sfx/land-01.wav"),
             loadSound(SOUNDS.Slide1, "/assets/sfx/slide-01.wav"),
@@ -50,6 +51,7 @@ export const ASSETS = {
 
 export const SOUNDS = {
     BgMusic: "bgmusic",
+    MenuMusic: 'MenuMusic',
     Jump1: "jump1",
     Land1: "land1",
     Slide1: "slide1",

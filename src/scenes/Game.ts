@@ -3,7 +3,7 @@ import assets, { ASSETS, SOUNDS } from '../assets';
 import Helicopter from '../Entities/Helicopter.js';
 import Player from '../Entities/Player.js';
 import Camera, { camera } from '../Entities/Camera.js';
-import { Rect } from 'kaboom';
+import { AudioPlay, Rect } from 'kaboom';
 import { level1, levelOptions } from './Level-001.js';
 import PaintBar from '../Components/PaintBar';
 import { playerEntity } from "../Entities/Player.js";
@@ -101,9 +101,18 @@ export default function Game() {
         }
     })
 
-    Player();
+    let player = Player();
     Camera();
-    play(SOUNDS.BgMusic, { loop: true, volume: 0.5, })
+
+    let bgMusic:AudioPlay | null = null;
+    onLoad(() => {
+        bgMusic = play(SOUNDS.BgMusic, { loop: true, volume: 0.5, });
+    })
+    
+    player.on('died', () => {
+        go("menu");
+        bgMusic?.stop();
+    });
 
 };
 
