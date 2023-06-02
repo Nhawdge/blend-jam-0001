@@ -20,6 +20,9 @@ const assets = {
             loadSound(SOUNDS.Splat1, "/assets/sfx/splat-01.wav"),
             loadSound(SOUNDS.Splat2, "/assets/sfx/splat-02.wav"),
             loadSound(SOUNDS.Swing1, "/assets/sfx/swing-01.wav"),
+            loadSound(SOUNDS.ChopperStart, '/assets/sfx/chopper-start.wav'),
+            loadSound(SOUNDS.ChopperLoop, '/assets/sfx/chopper-loop.wav'),
+            loadSound(SOUNDS.ChopperEnd, '/assets/sfx/chopper-end.wav'),
             
 
         ];
@@ -46,4 +49,7 @@ export const SOUNDS = {
     Splat1: "splat1",
     Splat2: "splat2",
     Swing1: "swing1",
+    ChopperStart: 'chopper-start',
+    ChopperLoop: 'chopper-loop',
+    ChopperEnd: 'chopper-end',
 }
