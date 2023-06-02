@@ -42,6 +42,10 @@ export default function PaintBar(){
 
       return{
         id: "paintBar",
-        
+        updatePaintBar(paintAmount: number) {
+          this.subtractPaint(paintAmount);
+          paintBar.width = 50 * (this.paintAmt() / 100);
+          console.log("Paint bar updating")
+        },
       }
 }

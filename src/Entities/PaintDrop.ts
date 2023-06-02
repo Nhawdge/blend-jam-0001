@@ -33,6 +33,12 @@ export default function PaintDrop(player, random) {
         "paint",
     ])
 
+    onCollide('paint', 'unpainted', (a, b) => {
+        b.unuse('sprite');
+        b.use(sprite(ASSETS.PAINTED_MIDDLE));
+        b.use(solid());
+    });
+
     wait(0.1, () => {
         drop.use(body({ weight: 0.5, stickToPlatform: true }));
     })
