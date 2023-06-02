@@ -11,6 +11,7 @@ export default function Player() {
     const DEFAULT_PLAYER_WEIGHT = 1;
     const COPTER_PLAYER_WEIGHT = 0.25;
     const STARTINGPAINTAMOUNT = 100;
+    const PAINTUSAGE = 5;
 
     let player = add([
         pos(100, 150),
@@ -19,7 +20,13 @@ export default function Player() {
         area(),
         body({ jumpForce: 640, weight: DEFAULT_PLAYER_WEIGHT }),
         solid(),
-    
+        {
+            paintAmount: STARTINGPAINTAMOUNT,
+            id: "paintAmount",
+            subtractPaint(amt: number) {return this.value - amt},
+            addPaint(amt: number) {return this.value + amt},
+            paintAmt() {return this.value}
+        },
         cleanup(),
         copter(),
         PaintBar(),
