@@ -41,7 +41,7 @@ export default function Player() {
     player.onExitCopter((is_grounded: boolean) => {
         player.weight = DEFAULT_PLAYER_WEIGHT;
         if (is_grounded) {
-            player.enterState('CopterEnd');
+            player.enterState("Idle");
         }
         else {
             player.enterState('Jump');
@@ -113,22 +113,21 @@ export default function Player() {
 
     onKeyDown("d", function () {
         player.move(walkspeed * (player.isRunning ? 2 : 1), 0);
-        if (player.isGrounded()) {
+        if (player.state !== "Walk" && player.isGrounded())
             player.enterState("Walk")
-        }
         player.flipX(false);
     })
 
     onKeyDown("a", function () {
         player.move(-walkspeed * (player.isRunning ? 2 : 1), 0);
-        if (player.isGrounded()) {
+        if (player.state !== "Walk" && player.isGrounded())
             player.enterState("Walk")
-        }
         player.flipX(true);
     })
 
     onKeyRelease(["w", "s", "a", "d"], function () {
-        player.enterState("Idle");
+        if (player.isGrounded())
+            player.enterState("Idle");
     })
 
 
