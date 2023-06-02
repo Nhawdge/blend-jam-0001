@@ -1,5 +1,5 @@
 import assets, { ASSETS, SOUNDS } from "../assets.js";
-import copter from '../Components/Copter' ;
+import copter from '../Components/Copter';
 
 export var playerEntity;
 
@@ -14,7 +14,7 @@ export default function Player() {
         origin('center'),
         sprite(ASSETS.HERO),
         area(),
-        body({ jumpForce: 320, weight: DEFAULT_PLAYER_WEIGHT }),
+        body({ jumpForce: 640, weight: DEFAULT_PLAYER_WEIGHT }),
         solid(),
         {
             shotsPerSecond: 10,
@@ -26,7 +26,7 @@ export default function Player() {
         },
         cleanup(),
         copter(),
-        state("Idle", ["Idle", "Throw", "Floor", "Jump", "CopterStart", "Copter", "CopterEnd", "Land", "Slide",])
+        state("Idle", ["Idle", "Walk", "Throw", "Floor", "Jump", "CopterStart", "Copter", "CopterEnd", "Land", "Slide",])
     ]);
 
     player.onEnterCopter(() => {
@@ -34,7 +34,7 @@ export default function Player() {
         player.weight = COPTER_PLAYER_WEIGHT;
     });
 
-    player.onExitCopter((is_grounded:boolean) => {
+    player.onExitCopter((is_grounded: boolean) => {
         player.weight = DEFAULT_PLAYER_WEIGHT;
         if (is_grounded) {
             player.enterState('CopterEnd');
@@ -45,7 +45,7 @@ export default function Player() {
     });
 
     player.onStateEnter("Idle", () => {
-        player.play('idle', { speed: 1, loop: true });
+        player.play('idle', { speed: 5, loop: true });
     })
 
     player.onStateEnter("Throw", () => {
@@ -57,18 +57,42 @@ export default function Player() {
     })
 
     player.onStateEnter("Floor", () => {
-
+        player.play('slide', { speed: 1, loop: false });
     })
 
+    player.onStateEnter("Jump", () => {
+        if (player.curAnim() != "jump") {
+            player.play('jump', { speed: 15, loop: false });
+        }
+    })
+
+    player.onStateEnter("Walk", () => {
+        console.log("walking")
+        if (player.curAnim() != "run") {
+            player.play("run", { speed: 15, loop: true });
+        }
+    })
+
+    player.onStateEnter("Copter", () => {
+        player.play('copter', { speed: 50, loop: true });
+    })
+
+    player.onStateEnter("Land", () => {
+        player.play('land', { speed: 1, loop: false });
+    })
+
+    player.onStateEnter("Slide", () => {
+        player.play('slide', { speed: 1, loop: false });
+    })
 
     onMouseDown(() => {
         player.enterState("Throw");
     })
 
-
     player.onUpdate(() => {
         //camPos(new vec2(player.pos.x, 150));
     })
+
     player.onDestroy(() => {
         go("menu");
     })
@@ -85,35 +109,21 @@ export default function Player() {
 
     onKeyDown("d", function () {
         player.move(walkspeed * (player.isRunning ? 2 : 1), 0);
-        if (player.isGrounded()) {
-            player.flipX(false);
-            if (player.isRunning && player.curAnim() != "Run") {
-                //player.play('Run', { speed: animationSpeed, loop: true });
-            }
-            else if (!player.isRunning && player.curAnim() != "Walk") {
-                //player.play('Walk', { speed: animationSpeed, loop: true });
-            }
-        }
+        player.enterState("Walk")
+        player.flipX(false);
     })
 
     onKeyDown("a", function () {
         player.move(-walkspeed * (player.isRunning ? 2 : 1), 0);
-        if (player.isGrounded()) {
-            player.flipX(true);
-            if (player.isRunning && player.curAnim() != "Run") {
-                //player.play('Run', { speed: animationSpeed, loop: true });
-            }
-            else if (!player.isRunning && player.curAnim() != "Walk") {
-                //player.play('Walk', { speed: animationSpeed, loop: true });
-            }
-        }
+        player.enterState("Walk")
+        player.flipX(true);
     })
 
     onKeyRelease(["w", "s", "a", "d"], function () {
         player.enterState("Idle");
     })
 
-    
+
 
     // onMouseDown(() => {
     //     if (player.canShoot() == false) return;
@@ -139,6 +149,7 @@ export default function Player() {
     //         "laser"
     //     ])
     // })
+
     playerEntity = player;
     return player;
 }

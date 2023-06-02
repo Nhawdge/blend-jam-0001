@@ -11,6 +11,11 @@ const assets = {
             loadSprite(ASSETS.MENUBG, "/assets/Background/mainmenu.jpg"),
             loadSprite(ASSETS.BACKGROUND, "/assets/Background/bgtile-1.png"),
             loadSprite(ASSETS.BACKGROUND2, "/assets/Background/bgtile-2.png"),
+
+            loadSprite(ASSETS.HIDDEN_LEFT, `/assets/Background/${ASSETS.HIDDEN_LEFT}.png`),
+            loadSprite(ASSETS.HIDDEN_MIDDLE, `/assets/Background/${ASSETS.HIDDEN_MIDDLE}.png`),
+            loadSprite(ASSETS.HIDDEN_RIGHT, `/assets/Background/${ASSETS.HIDDEN_RIGHT}.png`),
+            
             // loadSprite("pistol","/assets/2 Guns/1_1.png"),
             loadSound(SOUNDS.BgMusic, "/assets/music/GameSong1.wav"),
             loadSound(SOUNDS.Jump1, "/assets/sfx/jump-01.wav"),
@@ -37,7 +42,10 @@ export const ASSETS = {
     TILES: "tiles",
     BACKGROUND: "background",
     BACKGROUND2: "background2",
-    MENUBG: "menubg"
+    MENUBG: "menubg",
+    HIDDEN_LEFT: 'hidden-platform-left-end',
+    HIDDEN_MIDDLE: 'hidden-platform-middle',
+    HIDDEN_RIGHT: 'hidden-platform-right-end'
 };
 
 export const SOUNDS = {

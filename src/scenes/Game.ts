@@ -5,6 +5,7 @@ import Player from '../Entities/Player.js';
 import Camera, { camera } from '../Entities/Camera.js';
 import { Rect } from 'kaboom';
 import { level1, levelOptions } from './Level-001.js';
+import PaintBar from '../Components/PaintBar';
 import { playerEntity } from "../Entities/Player.js";
 
 export default function Game() {
@@ -103,6 +104,7 @@ export default function Game() {
 
     Player();
     Camera();
+    PaintBar();
     play(SOUNDS.BgMusic, { loop: true, volume: 0.5, })
 
 };
