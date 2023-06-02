@@ -6,10 +6,12 @@ enum State {
     Idle,
     StartCopter,
     LoopCopter,
-    EndCopter
+    Cooldown
 }
 
-const START_COPTER_TIME = 0.3;
+const START_COPTER_TIME = 0.2;
+const MAX_COPTER_TIME = 0.5;
+const COPTER_COOLDOWN = 1.5;
 
 export default function copter() {
     let state = State.Idle;
@@ -34,9 +36,14 @@ export default function copter() {
             const delta = dt();
             time_in_state += delta;
 
+            if (state == State.Cooldown) {
+                if (time_in_state < COPTER_COOLDOWN)
+                    return;
+                state = State.Idle;
+            }
 
             if (should_be_coptering) {
-                if (state == State.Idle) {
+                if (state == State.Idle && this.isFalling()) {
                     // ENTER COPTER
                     state = State.StartCopter;
                     sfx?.stop();
@@ -51,6 +58,15 @@ export default function copter() {
                         time_in_state = 0;
                         sfx?.stop();
                         sfx = play(SOUNDS.ChopperLoop, { loop: true });
+                    }
+                } else if (state == State.LoopCopter) {
+                    if (time_in_state >= MAX_COPTER_TIME) {
+                        state = State.Cooldown;
+                        sfx?.stop();
+                        sfx = play(SOUNDS.ChopperEnd);
+                        time_in_state = 0;
+                        if (off_copter != null)
+                            off_copter(is_grounded);
                     }
                 }
             } else if (state != State.Idle) {
