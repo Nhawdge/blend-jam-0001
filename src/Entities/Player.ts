@@ -32,7 +32,7 @@ export default function Player() {
     onKeyPress("space", function () {
         obj.doubleJump();
         if (obj.curAnim() != "Jump") {
-            obj.play('Jump', { speed: animationSpeed, loop: true });
+            //obj.play('Jump', { speed: animationSpeed, loop: true });
         }
     })
 
@@ -41,10 +41,10 @@ export default function Player() {
         if (obj.isGrounded()) {
             obj.flipX(false);
             if (obj.isRunning && obj.curAnim() != "Run") {
-                obj.play('Run', { speed: animationSpeed, loop: true });
+                //obj.play('Run', { speed: animationSpeed, loop: true });
             }
             else if (!obj.isRunning && obj.curAnim() != "Walk") {
-                obj.play('Walk', { speed: animationSpeed, loop: true });
+                //obj.play('Walk', { speed: animationSpeed, loop: true });
             }
         }
     })
@@ -54,17 +54,17 @@ export default function Player() {
         if (obj.isGrounded()) {
             obj.flipX(true);
             if (obj.isRunning && obj.curAnim() != "Run") {
-                obj.play('Run', { speed: animationSpeed, loop: true });
+                //obj.play('Run', { speed: animationSpeed, loop: true });
             }
             else if (!obj.isRunning && obj.curAnim() != "Walk") {
-                obj.play('Walk', { speed: animationSpeed, loop: true });
+                //obj.play('Walk', { speed: animationSpeed, loop: true });
             }
         }
     })
 
     onKeyRelease(["w", "s", "a", "d"], function () {
         obj.isRunning = false;
-        obj.play('Idle', { speed: 0.2, loop: true });
+        obj.play('Idle', { speed: 1, loop: true });
     })
 
 

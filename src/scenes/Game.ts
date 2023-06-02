@@ -4,41 +4,49 @@ import Helicopter from '../Entities/Helicopter.js';
 import Player from '../Entities/Player.js';
 
 export default function Game() {
-  const {
-    add,
-    pos,
-    origin,
-    width,
-    height,
-    sprite
-  } = k;
+    const {
+        add,
+        pos,
+        origin,
+        width,
+        height,
+        sprite
+    } = k;
 
-  const world = [[
-    "zxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxc"
-  ]]
+    const world = [[
+        "",
+        "",
+        "",
+        "",
+        "",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    ]]
 
-  const leveloptions = {
-    width: 32,
-    height: 32,
-    
-    c: () => [
-      sprite("tiles", { frame: 9, width: 32, height: 32 }),
-      area(), solid(), "block"
-    ],
+    const leveloptions = {
+        width: 32,
+        height: 32,
 
-    //" ": () => [sprite("tiles", { frame: 5, width: 32, height: 32 })],
-  }
+        x: () => [
+            rect(64, 64),
 
-  layer(["bg", "world", "ui"], "obj");
-  add([
-    sprite("background", "bg"),
-    layer("bg"),
-    "bg",
-    fixed(),
-  ])
-  addLevel(world[0], leveloptions);
+            outline(2, "black"),
+            //sprite("tiles", { frame: 9, width: 32, height: 32 }),
+            area(), solid(), "block"
+        ],
 
-  Player();
+        //" ": () => [sprite("tiles", { frame: 5, width: 32, height: 32 })],
+    }
+
+    //   layer(["bg", "world", "ui"], "obj");
+    //   add([
+    //     sprite("background", "bg"),
+    //     layer("bg"),
+    //     "bg",
+    //     fixed(),
+    //   ])
+    addLevel(world[0], leveloptions);
+
+    Player();
 
 };
 
