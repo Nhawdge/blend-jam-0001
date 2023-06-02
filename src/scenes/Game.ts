@@ -63,8 +63,6 @@ export default function Game() {
             "bg",
             pos(bgArrayLayer1[(i - 1)].pos.x + 32, 0),
             scale(2,2),
-            area({shape: rect(500,500)}),
-            cleanup()
           ]);
           var bg2 = add([
             sprite(ASSETS.BACKGROUND2),
@@ -72,8 +70,6 @@ export default function Game() {
             "bg2",
             pos(bgArrayLayer2[(i - 1)].pos.x + 32, 0),
             scale(2,2),
-            area(500,10),
-            cleanup()
           ]);
 
           bgArrayLayer1.push(bg);
@@ -83,7 +79,7 @@ export default function Game() {
 
       bg2.onUpdate(() => {   
         bgArrayLayer2.forEach(element => {
-            element.pos.x -= 1;
+            element.pos.x -= 2;
         });
       });
     Player();
