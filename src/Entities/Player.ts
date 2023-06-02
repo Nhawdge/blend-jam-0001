@@ -21,11 +21,11 @@ export default function Player() {
         body({ jumpForce: 640, weight: DEFAULT_PLAYER_WEIGHT }),
         solid(),
         {
-            paintAmount: STARTINGPAINTAMOUNT,
             id: "paintAmount",
-            subtractPaint(amt: number) {return this.value - amt},
-            addPaint(amt: number) {return this.value + amt},
-            paintAmt() {return this.value}
+            paintAmount: STARTINGPAINTAMOUNT,
+            subtractPaint(amt: number) {(this.paintAmount -= amt)},
+            addPaint(amt: number) {(this.paintAmount += amt)},
+            paintAmt() {return this.paintAmount}
         },
         cleanup(),
         copter(),
@@ -141,12 +141,12 @@ export default function Player() {
 
 
     onMouseDown(() => {
-        if (player.canThrow) {
+        if (player.canThrow && player.paintAmt() >= PAINTUSAGE) {
             player.canThrow = false
             player.enterState("Throw");
+            player.updatePaintBar(PAINTUSAGE);
         }
     })
-
 
     playerEntity = player;
     return player;
