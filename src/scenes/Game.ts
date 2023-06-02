@@ -73,7 +73,7 @@ export default function Game() {
         bgArrayLayer1.forEach(element => {
             element.pos.x -= 1;
         });
-        if (bgArrayLayer1[0].pos.x <= camera.pos.x - 1500) {
+        if (bgArrayLayer1[0].pos.x <=  -600) {
             destroy(bgArrayLayer1.shift());
             var bg = add([
                 sprite(ASSETS.BACKGROUND),
@@ -90,7 +90,7 @@ export default function Game() {
         bgArrayLayer2.forEach(element => {
             element.pos.x -= 2;
         });
-        if (bgArrayLayer2[0].pos.x <= camera.pos.x - 1500) {
+        if (bgArrayLayer2[0].pos.x <=  -600) {
             destroy(bgArrayLayer2.shift());
             var bg2 = add([
                 sprite(ASSETS.BACKGROUND2),
