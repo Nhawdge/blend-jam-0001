@@ -8,7 +8,7 @@ const assets = {
             // loadSprite("laser", "/assets/laser.png"),
             // loadSprite("target", "/assets/target.png"),
             // loadSprite("rainbowtaffy", "/assets/rainbow-taffy.png"),
-            // loadSprite("background", "/assets/2 Background/Background.png"),
+            loadSprite("background", "/assets/Background/background.jpg"),
             // loadSprite("pistol","/assets/2 Guns/1_1.png"),
 
         ];
