@@ -22,6 +22,12 @@ export default function Menu() {
         z(100),
     ]);
 
+    add([
+        text("Paint the Town\n Click to paint\nShift to hover", { size: 20 }),
+        pos(width() / 2, height() / 2 - 100),
+        origin("center"),
+        z(99)
+    ]);
 
     onClick("start", () => {
         go("game");
@@ -33,11 +39,11 @@ export default function Menu() {
     add([
         fixed(),
         sprite(ASSETS.MENUBG),
-        
+
     ])
 
     // var bgmusic = play(SOUNDS.BgMusic, { loop: true, })
-    let bgMusic:AudioPlay | null = null;
+    let bgMusic: AudioPlay | null = null;
     onLoad(() => {
         bgMusic = play(SOUNDS.MenuMusic, { loop: true, volume: 0.5, });
     })
