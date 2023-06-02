@@ -1,7 +1,8 @@
 import k from '../kaboom';
-import assets from '../assets';
+import assets, { ASSETS } from '../assets';
 import Helicopter from '../Entities/Helicopter.js';
 import Player from '../Entities/Player.js';
+import Camera from '../Entities/Camera.js';
 
 export default function Game() {
     const {
@@ -18,17 +19,15 @@ export default function Game() {
         "",
         "",
         "",
-        "",
         "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     ]]
 
     const leveloptions = {
-        width: 32,
-        height: 32,
+        width: 64,
+        height: 64,
 
         x: () => [
             rect(64, 64),
-
             outline(2, "black"),
             //sprite("tiles", { frame: 9, width: 32, height: 32 }),
             area(), solid(), "block"
@@ -37,16 +36,21 @@ export default function Game() {
         //" ": () => [sprite("tiles", { frame: 5, width: 32, height: 32 })],
     }
 
-    //   layer(["bg", "world", "ui"], "obj");
-    //   add([
-    //     sprite("background", "bg"),
-    //     layer("bg"),
-    //     "bg",
-    //     fixed(),
-    //   ])
+      layer(["bg", "world", "ui"], "obj");
+
+      var bg = add([
+        sprite(ASSETS.BACKGROUND),
+        layer("bg"),
+        "bg",
+        pos(0, 0),
+      ])
+      bg.onUpdate(() => {   
+        pos(bg.pos.x - 1, bg.pos.y);
+    })
     addLevel(world[0], leveloptions);
 
     Player();
+    Camera();
 
 };
 

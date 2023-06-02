@@ -2,7 +2,7 @@ import assets, { ASSETS } from "../assets.js";
 
 export default function Player() {
 
-    let obj = add([
+    let player = add([
         pos(100, 150),
         origin('center'),
         sprite(ASSETS.HERO),
@@ -17,68 +17,72 @@ export default function Player() {
             stopShoot() { this.value = false },
             startShoot() { this.value = true }
         },
-
+        cleanup(),
     ]);
 
-    obj.onUpdate(() => {
-        camPos(new vec2(obj.pos.x, 150));
+    player.onUpdate(() => {
+        //camPos(new vec2(player.pos.x, 150));
+    })
+    player.onDestroy(() => {
+        go("menu");
     })
 
-    obj.play('Idle', { speed: 1, loop: true });
+
+    player.play('Idle', { speed: 1, loop: true });
 
     var walkspeed = 100;
     var animationSpeed = 5;
 
     onKeyPress("space", function () {
-        obj.doubleJump();
-        if (obj.curAnim() != "Jump") {
-            //obj.play('Jump', { speed: animationSpeed, loop: true });
+        player.doubleJump();
+        if (player.curAnim() != "Jump") {
+            //player.play('Jump', { speed: animationSpeed, loop: true });
         }
     })
 
     onKeyDown("d", function () {
-        obj.move(walkspeed * (obj.isRunning ? 2 : 1), 0);
-        if (obj.isGrounded()) {
-            obj.flipX(false);
-            if (obj.isRunning && obj.curAnim() != "Run") {
-                //obj.play('Run', { speed: animationSpeed, loop: true });
+        player.move(walkspeed * (player.isRunning ? 2 : 1), 0);
+        if (player.isGrounded()) {
+            player.flipX(false);
+            if (player.isRunning && player.curAnim() != "Run") {
+                //player.play('Run', { speed: animationSpeed, loop: true });
             }
-            else if (!obj.isRunning && obj.curAnim() != "Walk") {
-                //obj.play('Walk', { speed: animationSpeed, loop: true });
+            else if (!player.isRunning && player.curAnim() != "Walk") {
+                //player.play('Walk', { speed: animationSpeed, loop: true });
             }
         }
     })
 
     onKeyDown("a", function () {
-        obj.move(-walkspeed * (obj.isRunning ? 2 : 1), 0);
-        if (obj.isGrounded()) {
-            obj.flipX(true);
-            if (obj.isRunning && obj.curAnim() != "Run") {
-                //obj.play('Run', { speed: animationSpeed, loop: true });
+        player.move(-walkspeed * (player.isRunning ? 2 : 1), 0);
+        if (player.isGrounded()) {
+            player.flipX(true);
+            if (player.isRunning && player.curAnim() != "Run") {
+                //player.play('Run', { speed: animationSpeed, loop: true });
             }
-            else if (!obj.isRunning && obj.curAnim() != "Walk") {
-                //obj.play('Walk', { speed: animationSpeed, loop: true });
+            else if (!player.isRunning && player.curAnim() != "Walk") {
+                //player.play('Walk', { speed: animationSpeed, loop: true });
             }
         }
     })
 
     onKeyRelease(["w", "s", "a", "d"], function () {
-        obj.isRunning = false;
-        obj.play('Idle', { speed: 1, loop: true });
+        player.isRunning = false;
+        player.play('Idle', { speed: 1, loop: true });
     })
 
 
 
     // onMouseDown(() => {
-    //     if (obj.canShoot() == false) return;
-    //     obj.stopShoot();
-    //     wait(1 / obj.shotsPerSecond, () => {
-    //         obj.startShoot();
+    //     if (player.canShoot() == false) return;
+    //     player.stopShoot();
+    //     wait(1 / player.shotsPerSecond, () => {
+    //         player.startShoot();
     //     });
     //     var mousePos = mouseWorldPos();
     //     //var mousePos = toWorld(mousePos())
 
-    //     var velocity = mousePos.sub(obj.pos).unit().scale(40);
+    //     var velocity = mousePos.sub(player.pos).unit().scale(40);
     //     var angle = velocity.angle();
 
     //     add([
