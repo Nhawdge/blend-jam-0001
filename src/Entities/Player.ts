@@ -14,7 +14,7 @@ export default function Player() {
         origin('center'),
         sprite(ASSETS.HERO),
         area(),
-        body({ jumpForce: 320, weight: DEFAULT_PLAYER_WEIGHT }),
+        body({ jumpForce: 640, weight: DEFAULT_PLAYER_WEIGHT }),
         solid(),
         {
             shotsPerSecond: 10,
