@@ -33,6 +33,7 @@ export default function Game() {
         pos(0, 0),
         scale(1, 1),
         z(-10),
+        fixed()
     ]));
     bgArrayLayer2.push(add([
         sprite(ASSETS.BACKGROUND2),
@@ -41,6 +42,7 @@ export default function Game() {
         pos(0, 0),
         scale(1, 1),
         z(-20),
+        fixed()
     ]));
 
     for (let i = 1; i < 3; i++) {
@@ -50,7 +52,8 @@ export default function Game() {
             "bg",
             pos(bgArrayLayer1[(i - 1)].pos.x + 600, 0),
             scale(1, 1),
-            z(-10)
+            z(-10),
+            fixed()
         ]);
         var bg2 = add([
             sprite(ASSETS.BACKGROUND2),
@@ -58,7 +61,8 @@ export default function Game() {
             "bg2",
             pos(bgArrayLayer2[(i - 1)].pos.x + 600, 0),
             scale(1, 1),
-            z(-20)
+            z(-20),
+            fixed()
         ]);
 
         bgArrayLayer1.push(bg);
@@ -68,7 +72,6 @@ export default function Game() {
     onUpdate(() => {
         bgArrayLayer1.forEach(element => {
             element.pos.x -= 1;
-            element.pos.y = playerEntity.pos.y - 150;
         });
         if (bgArrayLayer1[0].pos.x <= camera.pos.x - 1500) {
             destroy(bgArrayLayer1.shift());
@@ -78,14 +81,14 @@ export default function Game() {
                 "bg",
                 pos(bgArrayLayer1[(bgArrayLayer1.length - 1)].pos.x + 600, 0),
                 scale(1, 1),
-                z(-10)
+                z(-10),
+                fixed()
             ]);
             bgArrayLayer1.push(bg);
         }
 
         bgArrayLayer2.forEach(element => {
             element.pos.x -= 2;
-            element.pos.y = playerEntity.pos.y - 150;
         });
         if (bgArrayLayer2[0].pos.x <= camera.pos.x - 1500) {
             destroy(bgArrayLayer2.shift());
@@ -95,7 +98,8 @@ export default function Game() {
                 "bg2",
                 pos(bgArrayLayer2[(bgArrayLayer2.length - 1)].pos.x + 600, 0),
                 scale(1, 1),
-                z(-20)
+                z(-20),
+                fixed()
             ]);
             bgArrayLayer2.push(bg2);
         }
