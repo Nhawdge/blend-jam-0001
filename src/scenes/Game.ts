@@ -66,7 +66,6 @@ export default function Game() {
     };
 
     onUpdate(() => {
-        console.log("camera pos: ", camera.pos.y);
         bgArrayLayer1.forEach(element => {
             element.pos.x -= 1;
             element.pos.y = playerEntity.pos.y - 150;
@@ -78,7 +77,7 @@ export default function Game() {
                 layer("bg"),
                 "bg",
                 pos(bgArrayLayer1[(bgArrayLayer1.length - 1)].pos.x + 600, 0),
-                scale(2, 2),
+                scale(1, 1),
                 z(-10)
             ]);
             bgArrayLayer1.push(bg);
@@ -95,7 +94,7 @@ export default function Game() {
                 layer("bg2"),
                 "bg2",
                 pos(bgArrayLayer2[(bgArrayLayer2.length - 1)].pos.x + 600, 0),
-                scale(2, 2),
+                scale(1, 1),
                 z(-20)
             ]);
             bgArrayLayer2.push(bg2);
