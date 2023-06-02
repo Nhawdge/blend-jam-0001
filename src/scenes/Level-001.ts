@@ -1,19 +1,19 @@
 import { ASSETS } from "../assets"
 
 export var level1 = [
-"                                                     @                                                                                     @ ",
-"                                              [ggg]                                                                               [ggg] ",
-"",
-"",
-"                             [ggg]                                                                                       [ggg] ",
-"",
-"                                                                                         @",
-"              [ggg]                             [ggg]               [ggg]               [ggg]               [ggg]                                                       <#",
-"                                                                                                                                                 [ggg]                   #",
-"                                                                                                                                                                         #",
-"                                                                                                                                                                         #",
-"                                                                                                                                                                         #",
-"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "                                                     @                                                                                     @ ",
+    "                                              [ggg]                                                                               [ggg] ",
+    "",
+    "",
+    "                             [ggg]                                                                                       [ggg] ",
+    "",
+    "                                                                                         @",
+    "              [ggg]                             [ggg]               [ggg]               [ggg]               [ggg]                                                       <#",
+    "                                                                                                                                                 [ggg]                   #",
+    "                                                                                                                                                                         #",
+    "                                                                                                                                                                         #",
+    "                                                                                                                                                                         #",
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 
 ]
 
@@ -23,8 +23,9 @@ export var levelOptions = {
     height: 32,
 
     x: () => [
-        rect(32, 32),
-        outline(2, "black"),
+        //rect(32, 32),
+        // outline(2, "black"),
+        sprite(ASSETS.GROUND),
         //sprite("tiles", { frame: 9, width: 32, height: 32 }),
         area(), solid(), "block"
     ],

@@ -11,6 +11,7 @@ const assets = {
             loadSprite(ASSETS.MENUBG, "/assets/Background/start-screen-bg.png"),
             loadSprite(ASSETS.BACKGROUND, "/assets/Background/bgtile-1.png"),
             loadSprite(ASSETS.BACKGROUND2, "/assets/Background/bgtile-2.png"),
+            loadSprite(ASSETS.GROUND, "/assets/Background/the-ground-tile.png"),
 
             loadSprite(ASSETS.HIDDEN_LEFT, `/assets/Background/${ASSETS.HIDDEN_LEFT}.png`),
             loadSprite(ASSETS.HIDDEN_MIDDLE, `/assets/Background/${ASSETS.HIDDEN_MIDDLE}.png`),
@@ -44,6 +45,7 @@ export default assets;
 export const ASSETS = {
     HERO: "hero",
     TILES: "tiles",
+    GROUND: "ground",
     BACKGROUND: "background",
     BACKGROUND2: "background2",
     MENUBG: "menubg",
