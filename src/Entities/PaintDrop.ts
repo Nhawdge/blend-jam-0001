@@ -27,12 +27,12 @@ export default function PaintDrop(player) {
         pos(player.pos),
         origin("center"),
         move(velocity, 500),
-        // cleanup(),
+        cleanup({ delay: 10 }),
         "paint",
 
     ])
 
-    wait(0.5, () => {
+    wait(0.1, () => {
         drop.use(body());
     })
 }
