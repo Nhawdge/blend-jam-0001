@@ -10,22 +10,22 @@ enum State {
 }
 
 const START_COPTER_TIME = 0.2;
-const MAX_COPTER_TIME = 0.5;
+const MAX_COPTER_TIME = 2.5;
 const COPTER_COOLDOWN = 1.5;
 
 export default function copter() {
     let state = State.Idle;
     let shift_down = false;
     let time_in_state = 0;
-    let sfx:AudioPlay | null = null;
+    let sfx: AudioPlay | null = null;
 
     // Events
-    let on_copter:() => void | null;
-    let off_copter:(is_grounded:boolean) => void | null;
+    let on_copter: () => void | null;
+    let off_copter: (is_grounded: boolean) => void | null;
 
     return {
         id: 'copter',
-        require: [ "body", "pos", ],
+        require: ["body", "pos",],
         add() {
             k.onKeyDown('shift', () => shift_down = true);
             k.onKeyRelease('shift', () => shift_down = false);
@@ -80,8 +80,8 @@ export default function copter() {
                     off_copter(is_grounded);
             }
         },
-        onEnterCopter(callback:()=>void) { on_copter = callback; },
-        onExitCopter(callback:(is_grounded:boolean)=>void) { off_copter = callback; },
+        onEnterCopter(callback: () => void) { on_copter = callback; },
+        onExitCopter(callback: (is_grounded: boolean) => void) { off_copter = callback; },
     };
 }
 
