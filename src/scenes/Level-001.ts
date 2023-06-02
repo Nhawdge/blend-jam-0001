@@ -1,18 +1,19 @@
 
 export var level1 = [
-    "    @                                                                                     @ ",
-    "    ggggg                                                                               ggggg ",
-    "",
-    "",
-    "ggggg                                                                                       ggggg ",
-    "                           ",
-    "                                               @",
-    "ggggg                             ggggg               ggggg               ggggg               ggggg                                                         <#",
-    "                                                                                                       ggggg                      #",
-    "                                                                                                                                  #",
-    "                                                                                                                                  #",
-    "      p                                                                                                                                                                 #        ",
-    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+"                                                     @                                                                                     @ ",
+"                                              ggggg                                                                               ggggg ",
+"",
+"",
+"                             ggggg                                                                                       ggggg ",
+"",
+"                                                                                         @",
+"              ggggg                             ggggg               ggggg               ggggg               ggggg                                                       <#",
+"                                                                                                                                                 ggggg                   #",
+"                                                                                                                                                                         #",
+"                                                                                                                                                                         #",
+"                                                                                                                                                                         #",
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+
 ]
 
 
