@@ -1,15 +1,24 @@
-var colors = [
+import { ASSETS } from "../assets.js";
+
+const colors = [
     [255, 0, 0],
     [0, 255, 0],
     [0, 0, 255],
     [255, 255, 0]
 ]
 
-export default function Player() {
+export default function PaintDrop(player) {
 
     var paint = colors[randi(0, 3)];
-    
-    add([
+
+    var mousePos = mouseWorldPos();
+    //var mousePos = toWorld(mousePos())
+
+    var velocity = mousePos.sub(player.pos).unit().scale(40);
+    var angle = velocity.angle();
+
+
+    var drop = add([
         area(),
         sprite(ASSETS.PAINTDROP),
         color(paint[0], paint[1], paint[2]),
@@ -18,8 +27,12 @@ export default function Player() {
         pos(player.pos),
         origin("center"),
         move(velocity, 500),
-        cleanup(),
+        // cleanup(),
         "paint",
-        body(),
+
     ])
+
+    wait(0.5, () => {
+        drop.use(body());
+    })
 }

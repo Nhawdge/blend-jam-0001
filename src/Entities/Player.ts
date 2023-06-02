@@ -1,6 +1,7 @@
 import assets, { ASSETS, SOUNDS } from "../assets.js";
 import copter from '../Components/Copter';
 import PaintBar from "../Components/PaintBar.js";
+import PaintDrop from "./PaintDrop.js";
 
 export var playerEntity;
 
@@ -144,21 +145,8 @@ export default function Player() {
         var velocity = mousePos.sub(player.pos).unit().scale(40);
         var angle = velocity.angle();
 
-        console.log(colors);
-        var paint = colors[randi(0, 3)]
-        add([
-            area(),
-            sprite(ASSETS.PAINTDROP),
-            color(paint[0], paint[1], paint[2]),
-            //scale(0.25),
-            rotate(angle - 90),
-            pos(player.pos),
-            origin("center"),
-            move(velocity, 500),
-            cleanup(),
-            "paint",
-            body(),
-        ])
+        PaintDrop(player);
+     
     })
 
     playerEntity = player;
