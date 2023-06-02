@@ -29,7 +29,7 @@ export default function Menu() {
     add([
         fixed(),
         sprite(ASSETS.MENUBG),
-        scale(0.15)
+        
     ])
 
     var bgmusic = play(SOUNDS.BgMusic, { loop: true, })

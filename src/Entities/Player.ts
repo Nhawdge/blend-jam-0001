@@ -112,13 +112,17 @@ export default function Player() {
 
     onKeyDown("d", function () {
         player.move(walkspeed * (player.isRunning ? 2 : 1), 0);
-        player.enterState("Walk")
+        if (player.isGrounded()) {
+            player.enterState("Walk")
+        }
         player.flipX(false);
     })
 
     onKeyDown("a", function () {
         player.move(-walkspeed * (player.isRunning ? 2 : 1), 0);
-        player.enterState("Walk")
+        if (player.isGrounded()) {
+            player.enterState("Walk")
+        }
         player.flipX(true);
     })
 
@@ -128,30 +132,34 @@ export default function Player() {
 
 
 
-    // onMouseDown(() => {
-    //     if (player.canShoot() == false) return;
-    //     player.stopShoot();
-    //     wait(1 / player.shotsPerSecond, () => {
-    //         player.startShoot();
-    //     });
-    //     var mousePos = mouseWorldPos();
-    //     //var mousePos = toWorld(mousePos())
+    onMouseDown(() => {
+        if (player.canShoot() == false) return;
+        player.stopShoot();
+        wait(1 / player.shotsPerSecond, () => {
+            player.startShoot();
+        });
+        var mousePos = mouseWorldPos();
+        //var mousePos = toWorld(mousePos())
 
-    //     var velocity = mousePos.sub(player.pos).unit().scale(40);
-    //     var angle = velocity.angle();
+        var velocity = mousePos.sub(player.pos).unit().scale(40);
+        var angle = velocity.angle();
 
-    //     add([
-    //         area(),
-    //         sprite("laser"),
-    //         scale(0.25),
-    //         rotate(angle),
-    //         pos(gun.pos),
-    //         origin("center"),
-    //         move(velocity, 500),
-    //         cleanup(),
-    //         "laser"
-    //     ])
-    // })
+        console.log(colors);
+        var paint = colors[randi(0, 3)]
+        add([
+            area(),
+            sprite(ASSETS.PAINTDROP),
+            color(paint[0], paint[1], paint[2]),
+            //scale(0.25),
+            rotate(angle - 90),
+            pos(player.pos),
+            origin("center"),
+            move(velocity, 500),
+            cleanup(),
+            "paint",
+            body(),
+        ])
+    })
 
     playerEntity = player;
     return player;

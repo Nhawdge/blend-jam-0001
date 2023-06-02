@@ -8,14 +8,16 @@ const assets = {
             // loadSprite("laser", "/assets/laser.png"),
             // loadSprite("target", "/assets/target.png"),
             // loadSprite("rainbowtaffy", "/assets/rainbow-taffy.png"),
-            loadSprite(ASSETS.MENUBG, "/assets/Background/mainmenu.jpg"),
+            loadSprite(ASSETS.MENUBG, "/assets/Background/start-screen-bg.png"),
             loadSprite(ASSETS.BACKGROUND, "/assets/Background/bgtile-1.png"),
             loadSprite(ASSETS.BACKGROUND2, "/assets/Background/bgtile-2.png"),
 
             loadSprite(ASSETS.HIDDEN_LEFT, `/assets/Background/${ASSETS.HIDDEN_LEFT}.png`),
             loadSprite(ASSETS.HIDDEN_MIDDLE, `/assets/Background/${ASSETS.HIDDEN_MIDDLE}.png`),
             loadSprite(ASSETS.HIDDEN_RIGHT, `/assets/Background/${ASSETS.HIDDEN_RIGHT}.png`),
-            
+
+            loadSprite(ASSETS.PAINTDROP, `/assets/Background/the-paint-drop.png`),
+
             // loadSprite("pistol","/assets/2 Guns/1_1.png"),
             loadSound(SOUNDS.BgMusic, "/assets/music/GameSong1.wav"),
             loadSound(SOUNDS.Jump1, "/assets/sfx/jump-01.wav"),
@@ -28,7 +30,7 @@ const assets = {
             loadSound(SOUNDS.ChopperStart, '/assets/sfx/chopper-start.wav'),
             loadSound(SOUNDS.ChopperLoop, '/assets/sfx/chopper-loop.wav'),
             loadSound(SOUNDS.ChopperEnd, '/assets/sfx/chopper-end.wav'),
-            
+
 
         ];
 
@@ -45,7 +47,8 @@ export const ASSETS = {
     MENUBG: "menubg",
     HIDDEN_LEFT: 'hidden-platform-left-end',
     HIDDEN_MIDDLE: 'hidden-platform-middle',
-    HIDDEN_RIGHT: 'hidden-platform-right-end'
+    HIDDEN_RIGHT: 'hidden-platform-right-end',
+    PAINTDROP: 'paint-drop'
 };
 
 export const SOUNDS = {
