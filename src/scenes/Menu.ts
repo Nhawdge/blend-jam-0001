@@ -1,5 +1,6 @@
 import k from '../kaboom';
 import assets, { ASSETS, SOUNDS } from '../assets';
+import { AudioPlay } from 'kaboom';
 
 export default function Menu() {
     const {
@@ -21,10 +22,13 @@ export default function Menu() {
         z(100),
     ]);
 
+
     onClick("start", () => {
-        go("game")
-        bgmusic.stop();
+        go("game");
+        bgMusic?.stop();
     })
+
+    on
 
     add([
         fixed(),
@@ -32,6 +36,10 @@ export default function Menu() {
         scale(0.15)
     ])
 
-    var bgmusic = play(SOUNDS.BgMusic, { loop: true, })
+    // var bgmusic = play(SOUNDS.BgMusic, { loop: true, })
+    let bgMusic:AudioPlay | null = null;
+    onLoad(() => {
+        bgMusic = play(SOUNDS.MenuMusic, { loop: true, volume: 0.5, });
+    })
 
 }
