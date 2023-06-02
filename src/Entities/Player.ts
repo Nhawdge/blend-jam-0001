@@ -1,5 +1,7 @@
 import assets, { ASSETS, SOUNDS } from "../assets.js";
 
+export var playerEntity;
+
 export default function Player() {
 
     let player = add([
@@ -18,13 +20,25 @@ export default function Player() {
             startShoot() { this.value = true }
         },
         cleanup(),
-        state("Idle", ["Idle", "Throw", "Floor", "Jump", "Copter", "Land", "Slide",])
+        state("Idle", ["Idle", "Throw", "Jump", "Copter", "Land", "Slide",])
     ]);
 
-    player.onStateEnter("Throw", () => {
-        player.play('Throw', { speed: 1, loop: false });
-        play(SOUNDS.Swing1);
+    player.onStateEnter("Idle", () => {
+        player.play('idle', { speed: 1, loop: true });
     })
+
+    player.onStateEnter("Throw", () => {
+        player.play('throw', { speed: 10, loop: false });
+        play(SOUNDS.Swing1);
+        wait(0.5, () => {
+            player.enterState("Idle");
+        });
+    })
+
+    player.onStateEnter("Floor", () => {
+
+    })
+
 
     onMouseDown(() => {
         player.enterState("Throw");
@@ -37,12 +51,9 @@ export default function Player() {
     player.onDestroy(() => {
         go("menu");
     })
-
-
-    player.play('Idle', { speed: 1, loop: true });
+    player.play('idle', { speed: 1, loop: true });
 
     var walkspeed = 100;
-    var animationSpeed = 5;
 
     onKeyPress("space", function () {
         player.doubleJump();
@@ -78,8 +89,7 @@ export default function Player() {
     })
 
     onKeyRelease(["w", "s", "a", "d"], function () {
-        player.isRunning = false;
-        player.play('Idle', { speed: 1, loop: true });
+        player.enterState("Idle");
     })
 
 
@@ -108,4 +118,6 @@ export default function Player() {
     //         "laser"
     //     ])
     // })
+    playerEntity = player;
+    return player;
 }
