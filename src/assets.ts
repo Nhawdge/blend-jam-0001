@@ -8,8 +8,9 @@ const assets = {
             // loadSprite("laser", "/assets/laser.png"),
             // loadSprite("target", "/assets/target.png"),
             // loadSprite("rainbowtaffy", "/assets/rainbow-taffy.png"),
-            loadSprite(ASSETS.BACKGROUND, "/assets/Background/background.jpg"),
             loadSprite(ASSETS.MENUBG, "/assets/Background/mainmenu.jpg"),
+            loadSprite(ASSETS.BACKGROUND, "/assets/Background/bgtile-1.png"),
+            loadSprite(ASSETS.BACKGROUND2, "/assets/Background/bgtile-2.png"),
             // loadSprite("pistol","/assets/2 Guns/1_1.png"),
             loadSound(SOUNDS.BgMusic, "/assets/music/GameSong1.wav"),
             loadSound(SOUNDS.Jump1, "/assets/sfx/jump-01.wav"),
@@ -32,6 +33,7 @@ export const ASSETS = {
     HERO: "hero",
     TILES: "tiles",
     BACKGROUND: "background",
+    BACKGROUND2: "background2",
     MENUBG: "menubg"
 };
 
