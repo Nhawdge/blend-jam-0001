@@ -1,5 +1,5 @@
 export default function Player() {
-    var camera = add([
+    camera = add([
         { cameraSpeed: 1, },
         pos(0, 0),
     ]);
@@ -10,3 +10,5 @@ export default function Player() {
         camPos(new vec2(camera.pos.x + 1, 150));
     })
 }
+
+export var camera;
