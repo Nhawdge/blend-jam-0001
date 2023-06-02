@@ -1,14 +1,15 @@
+import { ASSETS } from "../assets"
 
 export var level1 = [
 "                                                     @                                                                                     @ ",
-"                                              ggggg                                                                               ggggg ",
+"                                              [ggg]                                                                               [ggg] ",
 "",
 "",
-"                             ggggg                                                                                       ggggg ",
+"                             [ggg]                                                                                       [ggg] ",
 "",
 "                                                                                         @",
-"              ggggg                             ggggg               ggggg               ggggg               ggggg                                                       <#",
-"                                                                                                                                                 ggggg                   #",
+"              [ggg]                             [ggg]               [ggg]               [ggg]               [ggg]                                                       <#",
+"                                                                                                                                                 [ggg]                   #",
 "                                                                                                                                                                         #",
 "                                                                                                                                                                         #",
 "                                                                                                                                                                         #",
@@ -29,11 +30,23 @@ export var levelOptions = {
     ],
     g: () => [
         rect(32, 32),
-        outline(2, "black"),
+        sprite(ASSETS.HIDDEN_MIDDLE),
         //sprite("tiles", { frame: 9, width: 32, height: 32 }),
-        area(), solid(), "block"
+        area(),
+        "unpainted"
     ],
-    
+    '[': () => [
+        rect(32, 32),
+        area(),
+        sprite(ASSETS.HIDDEN_LEFT),
+        'unpainted',
+    ],
+    ']': () => [
+        rect(32, 32),
+        area(),
+        sprite(ASSETS.HIDDEN_RIGHT),
+        'unpainted',
+    ],
 
     //" ": () => [sprite("tiles", { frame: 5, width: 32, height: 32 })],
 }
