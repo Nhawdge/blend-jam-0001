@@ -3,7 +3,7 @@ import copter from '../Components/Copter' ;
 
 export default function Player() {
     const DEFAULT_PLAYER_WEIGHT = 1;
-    const COPTER_PLAYER_WEIGHT = 0.5;
+    const COPTER_PLAYER_WEIGHT = 0.25;
 
     let player = add([
         pos(100, 150),
@@ -27,11 +27,11 @@ export default function Player() {
 
     player.onEnterCopter(() => {
         player.enterState('Copter');
-        console.log('Enter copter');
+        player.weight = COPTER_PLAYER_WEIGHT;
     });
 
     player.onExitCopter((is_grounded:boolean) => {
-        console.log('Exit Copter');
+        player.weight = DEFAULT_PLAYER_WEIGHT;
         if (is_grounded) {
             player.enterState('CopterEnd');
         }
