@@ -4,6 +4,7 @@ import Helicopter from '../Entities/Helicopter.js';
 import Player from '../Entities/Player.js';
 import Camera, { camera } from '../Entities/Camera.js';
 import { Rect } from 'kaboom';
+import { level1, levelOptions } from './Level-001.js';
 
 export default function Game() {
     const {
@@ -15,27 +16,8 @@ export default function Game() {
         sprite
     } = k;
 
-    const world = [[
-        "",
-        "",
-        "",
-        "",
-        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    ]]
-
-    const leveloptions = {
-        width: 64,
-        height: 64,
-
-        x: () => [
-            rect(64, 64),
-            outline(2, "black"),
-            //sprite("tiles", { frame: 9, width: 32, height: 32 }),
-            area(), solid(), "block"
-        ],
-
-        //" ": () => [sprite("tiles", { frame: 5, width: 32, height: 32 })],
-    }
+    const world = level1;
+    addLevel(world, levelOptions);
 
     layer(["bg", "bg2", "world", "ui"], "obj");
 
@@ -47,14 +29,16 @@ export default function Game() {
         layer("bg"),
         "bg",
         pos(0, 0),
-        scale(2, 2)
+        scale(2, 2),
+        z(-10)
     ]));
     bgArrayLayer2.push(add([
         sprite(ASSETS.BACKGROUND2),
         layer("bg2"),
         "bg2",
         pos(0, 0),
-        scale(2, 2)
+        scale(2, 2),
+        z(-20)
     ]));
 
     for (let i = 1; i < 30; i++) {
@@ -64,6 +48,7 @@ export default function Game() {
             "bg",
             pos(bgArrayLayer1[(i - 1)].pos.x + 32, 0),
             scale(2, 2),
+            z(-10)
         ]);
         var bg2 = add([
             sprite(ASSETS.BACKGROUND2),
@@ -71,12 +56,12 @@ export default function Game() {
             "bg2",
             pos(bgArrayLayer2[(i - 1)].pos.x + 32, 0),
             scale(2, 2),
+            z(-20)
         ]);
 
         bgArrayLayer1.push(bg);
         bgArrayLayer2.push(bg2);
     };
-    addLevel(world[0], leveloptions);
 
     onUpdate(() => {
         bgArrayLayer1.forEach(element => {
@@ -90,6 +75,7 @@ export default function Game() {
                 "bg",
                 pos(bgArrayLayer1[(bgArrayLayer1.length - 1)].pos.x + 32, 0),
                 scale(2, 2),
+                z(-10)
             ]);
             bgArrayLayer1.push(bg);
         }
@@ -105,6 +91,7 @@ export default function Game() {
                 "bg2",
                 pos(bgArrayLayer2[(bgArrayLayer2.length - 1)].pos.x + 32, 0),
                 scale(2, 2),
+                z(-20)
             ]);
             bgArrayLayer2.push(bg2);
         }

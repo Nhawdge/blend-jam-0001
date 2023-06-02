@@ -1,6 +1,10 @@
 import assets, { ASSETS, SOUNDS } from "../assets.js";
 import copter from '../Components/Copter' ;
 
+export var playerEntity;
+
+
+
 export default function Player() {
     const DEFAULT_PLAYER_WEIGHT = 1;
     const COPTER_PLAYER_WEIGHT = 0.25;
@@ -40,10 +44,22 @@ export default function Player() {
         }
     });
 
-    player.onStateEnter("Throw", () => {
-        player.play('Throw', { speed: 1, loop: false });
-        play(SOUNDS.Swing1);
+    player.onStateEnter("Idle", () => {
+        player.play('idle', { speed: 1, loop: true });
     })
+
+    player.onStateEnter("Throw", () => {
+        player.play('throw', { speed: 10, loop: false });
+        play(SOUNDS.Swing1);
+        wait(0.5, () => {
+            player.enterState("Idle");
+        });
+    })
+
+    player.onStateEnter("Floor", () => {
+
+    })
+
 
     onMouseDown(() => {
         player.enterState("Throw");
@@ -56,12 +72,9 @@ export default function Player() {
     player.onDestroy(() => {
         go("menu");
     })
-
-
-    player.play('Idle', { speed: 1, loop: true });
+    player.play('idle', { speed: 1, loop: true });
 
     var walkspeed = 100;
-    var animationSpeed = 5;
 
     onKeyPress("space", function () {
         player.doubleJump();
@@ -97,8 +110,7 @@ export default function Player() {
     })
 
     onKeyRelease(["w", "s", "a", "d"], function () {
-        player.isRunning = false;
-        player.play('Idle', { speed: 1, loop: true });
+        player.enterState("Idle");
     })
 
     
@@ -127,4 +139,6 @@ export default function Player() {
     //         "laser"
     //     ])
     // })
+    playerEntity = player;
+    return player;
 }

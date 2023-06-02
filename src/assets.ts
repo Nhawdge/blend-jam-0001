@@ -2,7 +2,7 @@
 const assets = {
     load: function () {
         const promises = [
-            loadAseprite(ASSETS.HERO, '/assets/Sprite-0001.png', '/assets/Sprite-0001.json'),
+            loadAseprite(ASSETS.HERO, '/assets/painter-person-combined.png', '/assets/painter-person-combined.json'),
             // loadAseprite(TILES, '/assets/industrytiles.png', '/assets/industrytiles.json'),
             // loadAseprite("helicopter", "/assets/helicopter.png", "/assets/helicopter.json"),
             // loadSprite("laser", "/assets/laser.png"),

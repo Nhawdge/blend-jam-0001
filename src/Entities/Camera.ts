@@ -1,3 +1,5 @@
+import { playerEntity } from "./Player.js";
+
 export default function Player() {
     camera = add([
         { cameraSpeed: 1, },
@@ -6,8 +8,9 @@ export default function Player() {
 
 
     camera.onUpdate(() => {
+        var y = playerEntity.pos.y;
         camera.pos.x += camera.cameraSpeed;
-        camPos(new vec2(camera.pos.x + 1, 150));
+        camPos(new vec2(camera.pos.x + 1, y));
     })
 }
 
