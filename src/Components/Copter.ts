@@ -9,8 +9,7 @@ enum State {
     EndCopter
 }
 
-const START_COPTER_TIME = 1.0;
-const ANTI_GRAV = -300;
+const START_COPTER_TIME = 0.3;
 
 export default function copter() {
     let state = State.Idle;
@@ -37,11 +36,10 @@ export default function copter() {
 
 
             if (should_be_coptering) {
-                this.move(0, ANTI_GRAV);
-
                 if (state == State.Idle) {
                     // ENTER COPTER
                     state = State.StartCopter;
+                    sfx?.stop();
                     sfx = play(SOUNDS.ChopperStart);
                     time_in_state = 0;
                     if (on_copter != null)
@@ -51,6 +49,7 @@ export default function copter() {
                         // Transition to loop
                         state = State.LoopCopter;
                         time_in_state = 0;
+                        sfx?.stop();
                         sfx = play(SOUNDS.ChopperLoop, { loop: true });
                     }
                 }

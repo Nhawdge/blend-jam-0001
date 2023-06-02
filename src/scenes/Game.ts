@@ -4,6 +4,7 @@ import Helicopter from '../Entities/Helicopter.js';
 import Player from '../Entities/Player.js';
 import Camera, { camera } from '../Entities/Camera.js';
 import { Rect } from 'kaboom';
+import { level1, levelOptions } from './Level-001.js';
 
 export default function Game() {
     const {
@@ -15,27 +16,8 @@ export default function Game() {
         sprite
     } = k;
 
-    const world = [[
-        "",
-        "",
-        "",
-        "",
-        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    ]]
-
-    const leveloptions = {
-        width: 64,
-        height: 64,
-
-        x: () => [
-            rect(64, 64),
-            outline(2, "black"),
-            //sprite("tiles", { frame: 9, width: 32, height: 32 }),
-            area(), solid(), "block"
-        ],
-
-        //" ": () => [sprite("tiles", { frame: 5, width: 32, height: 32 })],
-    }
+    const world = level1;
+    addLevel(world, levelOptions);
 
     layer(["bg", "bg2", "world", "ui"], "obj");
 
@@ -80,7 +62,6 @@ export default function Game() {
         bgArrayLayer1.push(bg);
         bgArrayLayer2.push(bg2);
     };
-    addLevel(world[0], leveloptions);
 
     onUpdate(() => {
         bgArrayLayer1.forEach(element => {
