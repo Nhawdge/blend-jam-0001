@@ -8,7 +8,8 @@ const assets = {
             // loadSprite("laser", "/assets/laser.png"),
             // loadSprite("target", "/assets/target.png"),
             // loadSprite("rainbowtaffy", "/assets/rainbow-taffy.png"),
-            loadSprite(ASSETS.BACKGROUND, "/assets/Background/background.jpg"),
+            loadSprite(ASSETS.BACKGROUND, "/assets/Background/bgtile-1.png"),
+            loadSprite(ASSETS.BACKGROUND2, "/assets/Background/bgtile-2.png")
             // loadSprite("pistol","/assets/2 Guns/1_1.png"),
 
         ];
@@ -18,4 +19,4 @@ const assets = {
 };
 
 export default assets;
-export const ASSETS = { HERO: "hero", TILES: "tiles", BACKGROUND: "background" };
+export const ASSETS = { HERO: "hero", TILES: "tiles", BACKGROUND: "background", BACKGROUND2: "background2" };
