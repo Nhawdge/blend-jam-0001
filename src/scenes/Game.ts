@@ -4,6 +4,7 @@ import Player from '../Entities/Player.js';
 import Camera, { camera } from '../Entities/Camera.js';
 import { AudioPlay, Rect } from 'kaboom';
 import { level1, levelOptions } from './Level-001.js';
+import LevelBackground from '../Entities/LevelBackground';
 
 export default function Game() {
     const {
@@ -20,38 +21,10 @@ export default function Game() {
 
     layer(["bg2", "bg", "world", "ui"], "obj");
 
-
-    var bg1 = add([
-        sprite(ASSETS.BACKGROUND, { tiled: true, width: 6000, height: 3000 }),
-        layer("bg"),
-        "bg",
-        pos(0, 0),
-        scale(1, 1),
-        z(-10),
-        fixed(),
-        move(-1, 0)
-    ]);
-    var bg2 = add([
-        sprite(ASSETS.BACKGROUND2, { tiled: true, width: 6000, height: 3000 }),
-        layer("bg2"),
-        "bg2",
-        pos(0, 0),
-        scale(1, 1),
-        z(-20),
-        fixed(),
-        move(-2, 0)
-    ]);
-
-    bg1.onUpdate(() => {
-        bg1.pos.x -= 1;
-    })
-    bg2.onUpdate(() => {
-        bg2.pos.x -= 2;
-    })
-
     let player = Player();
     Camera();
-
+    LevelBackground();
+    
     let bgMusic: AudioPlay | null = null;
     onLoad(() => {
         const rnd = Math.random();
