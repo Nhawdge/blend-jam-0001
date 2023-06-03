@@ -27,13 +27,17 @@ export default function PaintDrop(player, random) {
         sprite(ASSETS.PAINTDROP),
         color(paint[0], paint[1], paint[2]),
         //scale(0.25),
-        rotate(angle - 90),
+        rotate(angle),
         pos(player.pos),
         origin("center"),
         move(velocity, 500),
         cleanup({ delay: 10 }),
         "paint",
     ])
+    drop.onUpdate(() => {
+//FIX ME
+        drop.angle = drop.pos.angle();
+    })
 
     onCollide('paint', 'unpainted', (a, b) => {
         b.unuse('sprite');
@@ -46,15 +50,14 @@ export default function PaintDrop(player, random) {
         destroy(drop);
     });
 
-
     let life = LIFESPAN;
     onUpdate(() => {
-        life -=  dt();
+        life -= dt();
         if (life < 0)
             destroy(drop);
     });
 
     wait(0.1, () => {
-        drop.use(body({ weight: 0.5, stickToPlatform: true }));
+        drop.use(body({ weight: 0.5 }));
     })
 }
