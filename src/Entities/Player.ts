@@ -23,9 +23,9 @@ export default function Player() {
         {
             id: "paintAmount",
             paintAmount: STARTINGPAINTAMOUNT,
-            subtractPaint(amt: number) {(this.paintAmount -= amt)},
-            addPaint(amt: number) {(this.paintAmount += amt)},
-            paintAmt() {return this.paintAmount}
+            subtractPaint(amt: number) { (this.paintAmount -= amt) },
+            addPaint(amt: number) { (this.paintAmount += amt) },
+            paintAmt() { return this.paintAmount }
         },
         cleanup(),
         copter(),
@@ -38,14 +38,9 @@ export default function Player() {
         player.enterState('Copter');
         player.weight = COPTER_PLAYER_WEIGHT;
         PaintDrop(player, true);
-        PaintDrop(player, true);
-        PaintDrop(player, true);
-        PaintDrop(player, true);
-        PaintDrop(player, true);
-        PaintDrop(player, true);
-        PaintDrop(player, true);
-        PaintDrop(player, true);
-        PaintDrop(player, true);
+        wait(0.25, () => PaintDrop(player, true));
+        wait(0.5, () => PaintDrop(player, true));
+        wait(0.75, () => PaintDrop(player, true));
     });
 
     player.onExitCopter((is_grounded: boolean) => {
@@ -84,7 +79,7 @@ export default function Player() {
     })
 
     player.onStateEnter("Walk", () => {
-        if (player.curAnim() != "run") {
+        if (player.curAnim() != "run" && player.curAnim() != "throw" && player.curAnim() != "jump") {
             player.play("run", { speed: 15, loop: true });
         }
     })
